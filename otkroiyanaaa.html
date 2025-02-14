@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>С Днем Святого Валентина, Яна!</title>
+    <style>
+        body {
+            text-align: center;
+            background: linear-gradient(135deg, #ffccdd, #ff99cc), url('https://www.transparenttextures.com/patterns/flowers.png');
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #cc0052;
+        }
+        button {
+            background-color: #ff3385;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff1a66;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 22px;
+            color: #cc0052;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 90%;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        .floating-heart {
+            position: absolute;
+            color: #ff4d88;
+            font-size: 20px;
+            animation: floatHearts 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Яна, у меня сюрприз для тебя!!</h1>
+        <button id="btn1">Нажми меня</button>
+        <button id="btn2" class="hidden">Еще раз</button>
+        <button id="btn3" class="hidden">Последний раз</button>
+        <div id="message" class="hidden message">💖 С Днем Святого Валентина, Яна! 💖 Спасибо за то что ты есть! 💕</div>
+        <div id="image-container" class="hidden image-container">
+            <img src="https://media.discordapp.net/attachments/775969956911120386/1340008661011005481/image.png?ex=67b0cbd0&is=67af7a50&hm=853fb684b289665ff1f3241601054fe3efc8f1dc3313c42e7c4a62f75eece08e&=&format=webp&quality=lossless&width=375&height=464" alt="Сюрприз для Яны">
+        </div>
+    </div>
+    <script>
+        document.getElementById('btn1').addEventListener('click', function() {
+            document.getElementById('btn1').classList.add('hidden');
+            document.getElementById('btn2').classList.remove('hidden');
+        });
+        document.getElementById('btn2').addEventListener('click', function() {
+            document.getElementById('btn2').classList.add('hidden');
+            document.getElementById('btn3').classList.remove('hidden');
+        });
+        document.getElementById('btn3').addEventListener('click', function() {
+            document.getElementById('btn3').classList.add('hidden');
+            document.getElementById('message').classList.remove('hidden');
+            document.getElementById('image-container').classList.remove('hidden');
+            createFloatingHearts();
+        });
+        function createFloatingHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = Math.random() * window.innerHeight + 'px';
+                heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
+
